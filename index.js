@@ -1,59 +1,102 @@
 let inquirer = require("inquirer");
 let fs = require("fs");
 
-
-inquirer
-  .prompt([
+const promptUser = () =>
+inquirer.prompt([
+  {
+    type: "input",
+    message: "What is your GitHub username?",
+    name: "username",
+  },
+  {
+    type: "input",
+    message: "What is your email?",
+    name: "email",
+  },
     {
       type: "input",
       message: "What is the title of your project?",
-      name: "username"
+      name: "title",
     },
     {
       type: "input",
       message: "What is your project about?",
-      name: "description"
+      name: "description",
     },
     {
       type: "input",
-      message: "How is your project installed?",
-      name: "install"
-    }
-  ])
-  .then(function(response) {
-
-    const readMEResponse = JSON.stringify(response);
-
-fs.writeFile("README.md",readMEResponse, error =>{
-  if(error){
-    console.log(error);
-  }
-
-} )
-    let answers = `
+      message: "What are the steps required to install your project?",
+      name: "install",
+    },
+    {
+      type: "input",
+      message: "What are the instructions and examples for use?",
+      name: "usage",
+    },
+    {
+      type: "checkbox",
+      message: "Which licensing did you select for your project?",
+      name: "license",
+      choices: [
+        "Apache License 2.0",
+        "GNU GPL",
+        "GNU LGPL",
+        "MIT License",
+        "Mozilla Public License 2.0",
+        "Common Development and Distribution License",
+        "Eclipse Public License version 2.0",
+        "NA",
+      ]
+    },
+    {
+      type: "input",
+      message:
+        "Would you like other developers to contribute to your project? If not, type 'NA'",
+      name: "contributing",
+    },
+    {
+      type: "input",
+      message: "Did you write tests for your application?  If not, type 'NA'.",
+      name: "tests",
+    },
+  ]).then((response) => {
     
-    # Project Title
+    const README =
+      `
+     # Project Title
+ 
+     ## Description
+ 
+     ## Table of Contents
+ 
+     * [Installation](#installation)
+     * [Usage](#usage)
+     * [Credits](#credits)
+     * [License](#license)
+ 
+     ## Installation
+ 
+     ## Usage
+ 
+     ## License
+ 
+     ## Contributing
 
-    ## Description 
-
-    ## Table of Contents
-
-    * [Installation](#installation)
-    * [Usage](#usage)
-    * [Credits](#credits)
-    * [License](#license)
-
-    ## Installation
+     ## Questions
+     - [Email]()
+     - [Github Page]()
+ 
+     `;
+     fs.writeFile("README.md", response, error => {
+      if (error) {console.log(error);
+      }
+      console.log("success!");
+    });
+    });
+    promptUser ();
     
-    ## Usage 
-
-    ## License
-
-    ## Contributing
+ 
     
-    
-    `
+  
 
-
-
-  });
+  // const readMEResponse = JSON.stringify(response);
