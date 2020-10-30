@@ -1,0 +1,25 @@
+{
+  "name": "readme.geneator",
+  "version": "1.0.0",
+  "description": "Application that generates README based on user input",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lee-amber-alex/README.Geneator.git"
+  },
+  "keywords": [
+    "README"
+  ],
+  "author": "Amber Lee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lee-amber-alex/README.Geneator/issues"
+  },
+  "homepage": "https://github.com/lee-amber-alex/README.Geneator#readme",
+  "dependencies": {
+    "inquirer": "^7.3.3"
+  }
+}
