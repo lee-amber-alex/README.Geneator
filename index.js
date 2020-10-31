@@ -64,7 +64,7 @@ inquirer.prompt([
     const README =
       `
      # Project Title
- 
+      ${inquirer.prompt[2].message}
      ## Description
  
      ## Table of Contents
@@ -91,6 +91,7 @@ inquirer.prompt([
       if (error) {console.log(error);
       }
       console.log("success!");
+      console.log(README);
     });
     });
     userQuestions ();
@@ -98,5 +99,3 @@ inquirer.prompt([
  
     
   
-
-  // const readMEResponse = JSON.stringify(response);
