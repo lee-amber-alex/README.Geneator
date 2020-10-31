@@ -1,7 +1,7 @@
 let inquirer = require("inquirer");
 let fs = require("fs");
 
-const promptUser = () =>
+const userQuestions = () =>
 inquirer.prompt([
   {
     type: "input",
@@ -87,13 +87,13 @@ inquirer.prompt([
      - [Github Page]()
  
      `;
-     fs.writeFile("README.md", response, error => {
+     fs.writeFile("README.md", README, error => {
       if (error) {console.log(error);
       }
       console.log("success!");
     });
     });
-    promptUser ();
+    userQuestions ();
     
  
     
