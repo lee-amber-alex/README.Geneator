@@ -1,5 +1,17 @@
 let inquirer = require("inquirer");
 let fs = require("fs");
+let apacheLic =
+  "[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)";
+let gplLic =
+  "[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)";
+let lgpLic =
+  "![License: LGPL v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)";
+let mitLic =
+  "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)";
+let mplLic =
+  "[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)";
+let eplLic =
+  "[![License](https://img.shields.io/badge/License-EPL%201.0-red.svg)](https://opensource.org/licenses/EPL-1.0)";
 
 const userQuestions = () =>
   inquirer
@@ -64,7 +76,6 @@ const userQuestions = () =>
           "GNU LGPL",
           "MIT License",
           "Mozilla Public License 2.0",
-          "Common Development and Distribution License",
           "Eclipse Public License version 2.0",
           "NA",
         ],
@@ -82,8 +93,10 @@ const userQuestions = () =>
       },
     ])
     .then((response) => {
+      const { license, choices } = response.license;
+
+      console.log(response.license);
       console.log(response);
-      console.log(response.description);
 
       const README = `
      # Project Title
@@ -112,12 +125,12 @@ const userQuestions = () =>
      - [Github Page](https://github.com/${response.username})
  
      `;
-      fs.writeFile("README.md", README, (error) => {
-        if (error) {
-          console.log(error);
-        }
-        console.log("success!");
-        console.log(README);
-      });
+      // fs.writeFile("README.md", README, (error) => {
+      //   if (error) {
+      //     console.log(error);
+      //   }
+      //   console.log("success!");
+      //   console.log(README);
+      // });
     });
 userQuestions();
