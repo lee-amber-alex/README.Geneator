@@ -67,7 +67,7 @@ const userQuestions = () =>
         name: "screenshots",
       },
       {
-        type: "checkbox",
+        type: "list",
         message: "Which licensing did you select for your project?",
         name: "license",
         choices: [
@@ -93,10 +93,8 @@ const userQuestions = () =>
       },
     ])
     .then((response) => {
-      const { license, choices } = response.license;
 
-      console.log(response.license);
-      console.log(response);
+    console.log(response);
 
       const README = `
      # Project Title
