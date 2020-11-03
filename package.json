@@ -1,5 +1,5 @@
 {
-  "name": "readme.geneator",
+  "name": "readme.generator",
   "version": "1.0.0",
   "description": "Application that generates README based on user input",
   "main": "index.js",
