@@ -12,6 +12,7 @@ let mplLic =
   "[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)";
 let eplLic =
   "[![License](https://img.shields.io/badge/License-EPL%201.0-red.svg)](https://opensource.org/licenses/EPL-1.0)";
+let licChoice = [apacheLic, gplLic, lgpLic, mitLic, mplLic, eplLic];
 
 const userQuestions = () =>
   inquirer
@@ -54,30 +55,29 @@ const userQuestions = () =>
         type: "input",
         message: "What are the steps required to install your project?",
         name: "install",
+        default: "npm install",
       },
       {
         type: "input",
         message: "What are the instructions for use?",
         name: "usage",
       },
-      {
-        type: "confirm",
-        message:
-          "Would you like to include screenshots with the usage instructions?",
-        name: "screenshots",
-      },
+
       {
         type: "list",
         message: "Which licensing did you select for your project?",
         name: "license",
         choices: [
-          "Apache License 2.0",
-          "GNU GPL",
-          "GNU LGPL",
-          "MIT License",
-          "Mozilla Public License 2.0",
-          "Eclipse Public License version 2.0",
-          "NA",
+          { name: "Apache License 2.0", value: { badge: apacheLic, name: "Apache License 2.0"} },
+          { name: "GNU GPL", value: { badge: gplLic, name: "GNU GPL"} },
+          { name: "GNU LGPL", value: { badge: lgpLic, name: "GNU LGPL"} },
+          { name: "MIT License", value: { badge: mitLic, name: "MIT License"} },
+          { name: "Mozilla Public License 2.0", value: { badge: mplLic, name: "Mozilla Public License 2.0" } },
+          {
+            name: "Eclipse Public License version 2.0",
+            value: { badge: eplLic, name: "Eclipse Public License version 2.0" },
+          },
+          { name: "NA", value: { badge: null, name: null} },
         ],
       },
       {
@@ -87,48 +87,64 @@ const userQuestions = () =>
         name: "contributing",
       },
       {
-        type: "confirm",
+        type: "input",
         message: "Did you write tests for your application?",
         name: "tests",
+        default: "npm test",
       },
     ])
-    .then((response) => {
-
-    console.log(response);
+    .then(({title, ...response}) => {
+      console.log(response);
 
       const README = `
-     # Project Title
-      ${response.title}
-     ## Description
-      ${response.description}
-     ## Table of Contents
- 
-     * [Installation](#installation)
-     * [Usage](#usage)
-     * [Credits](#credits)
-     * [License](#license)
- 
-     ## Installation
-     ${response.install}
- 
-     ## Usage
- 
-     ## License
-     ${response.license}
- 
-     ## Contributing
+# ${title}
 
-     ## Questions
-     - [Email](${response.email})
-     - [Github Page](https://github.com/${response.username})
+${response.license.badge}
+      
+     
+## Description
+
+${response.description}
+
+## Table of Contents
  
-     `;
-      // fs.writeFile("README.md", README, (error) => {
-      //   if (error) {
-      //     console.log(error);
-      //   }
-      //   console.log("success!");
-      //   console.log(README);
-      // });
+* [Installation](#installation)
+* [Usage](#usage)
+* [Credits](#credits)
+* [License](#license)
+ 
+## Installation
+\`\`\`
+${response.install}
+\`\`\` 
+## Usage
+  
+ 
+## License
+This project is covered under the ${response.license.name}.
+ 
+${response.contributing ? `## Contributing 
+
+Fill in this later.
+`:""}
+
+## Tests
+\`\`\`
+${response.tests}
+\`\`\` 
+## Usage
+
+## Questions
+- [Email](${response.email})
+- [Github Page](https://github.com/${response.username})
+ 
+`;
+      fs.writeFile("README.md", README, (error) => {
+        if (error) {
+          console.log(error);
+        }
+        console.log("success!");
+        console.log(README);
+      });
     });
 userQuestions();
