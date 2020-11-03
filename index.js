@@ -12,8 +12,8 @@ let mplLic =
   "[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)";
 let eplLic =
   "[![License](https://img.shields.io/badge/License-EPL%201.0-red.svg)](https://opensource.org/licenses/EPL-1.0)";
-let licChoice = [apacheLic, gplLic, lgpLic, mitLic, mplLic, eplLic];
 
+let contributes = "[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)"
 const userQuestions = () =>
   inquirer
     .prompt([
@@ -85,7 +85,8 @@ const userQuestions = () =>
         message:
           "Would you like other developers to contribute to your project?",
         name: "contributing",
-      },
+        },
+      
       {
         type: "input",
         message: "Did you write tests for your application?",
@@ -93,11 +94,12 @@ const userQuestions = () =>
         default: "npm test",
       },
     ])
-    .then(({title, ...response}) => {
+    .then((response) => {
+      
       console.log(response);
 
       const README = `
-# ${title}
+# ${response.title}
 
 ${response.license.badge}
       
@@ -119,20 +121,17 @@ ${response.install}
 \`\`\` 
 ## Usage
   
- 
 ## License
 This project is covered under the ${response.license.name}.
  
-${response.contributing ? `## Contributing 
-
-Fill in this later.
+${response.contributing ? `## Contributing
+${contributes} 
 `:""}
 
 ## Tests
 \`\`\`
 ${response.tests}
 \`\`\` 
-## Usage
 
 ## Questions
 - [Email](${response.email})
