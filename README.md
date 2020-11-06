@@ -21,9 +21,9 @@ npm install
 ``` 
 
 ## Usage
-Watch the README.generator demo [here.](https://vimeo.com/475283514/7fb19a9a52)  
+Watch the README.Generator demo [here.](https://vimeo.com/475283514/7fb19a9a52)  
 
-Navigate to the project directory and "npm install".  Follow the prompts to input your project information. ![prompts](screenshots/prompts.png) ![readme](screenshots/readme.png)  
+Navigate to the project directory and clone README.Generator repo.  ![GitClone](screenshots/cloneRepo.png)  ![GitClone](screenshots/clone2.png)   Next "npm install".  ![GitClone](screenshots/install.png) Follow the prompts to input your project information. ![prompts](screenshots/prompts.png) ![readme](screenshots/readme.png)  
 
 ## License
 This project is covered under the GNU GPL.
