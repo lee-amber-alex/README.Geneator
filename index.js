@@ -141,7 +141,7 @@ ${response.tests}
 - [Github Page](https://github.com/${response.username})
  
 `;
-      fs.writeFile("README.md", README, (error) => {
+      fs.writeFile("./test/README.md", README, (error) => {
         if (error) {
           console.log(error);
         }
